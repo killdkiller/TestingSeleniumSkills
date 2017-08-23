@@ -1,0 +1,10 @@
+
+<suite name = "TestSuiteOne">
+	<test name = "SampleTests">
+		<parameter name = "url" value ="http://www.way2automation.com/demo.html"></parameter>how to use latest jar in POM
+		<parameter name = "browserName" value ="CHROME"></parameter>
+		<classes>		
+			<class name = "org.epam.tests.BaseTest"></class>
+		</classes>
+	</test> 
+</suite>

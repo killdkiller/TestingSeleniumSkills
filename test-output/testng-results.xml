@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="TestSuiteOne" duration-ms="9238" started-at="2017-08-21T11:10:08Z" finished-at="2017-08-21T11:10:18Z">
+    <groups>
+    </groups>
+    <test name="SampleTests" duration-ms="9238" started-at="2017-08-21T11:10:08Z" finished-at="2017-08-21T11:10:18Z">
+      <class name="org.epam.tests.BaseTest">
+        <test-method status="PASS" signature="initializeDriver(java.lang.String, java.lang.String)[pri:0, instance:org.epam.tests.BaseTest@523884b2]" name="initializeDriver" is-config="true" duration-ms="7824" started-at="2017-08-21T16:40:08Z" finished-at="2017-08-21T16:40:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://www.way2automation.com/demo.html]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[CHROME]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initializeDriver -->
+        <test-method status="PASS" signature="selectFromList()[pri:0, instance:org.epam.tests.BaseTest@523884b2]" name="selectFromList" duration-ms="174" started-at="2017-08-21T16:40:16Z" finished-at="2017-08-21T16:40:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- selectFromList -->
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:org.epam.tests.BaseTest@523884b2]" name="closeDriver" is-config="true" duration-ms="1223" started-at="2017-08-21T16:40:16Z" finished-at="2017-08-21T16:40:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeDriver -->
+      </class> <!-- org.epam.tests.BaseTest -->
+    </test> <!-- SampleTests -->
+  </suite> <!-- TestSuiteOne -->
+</testng-results>
