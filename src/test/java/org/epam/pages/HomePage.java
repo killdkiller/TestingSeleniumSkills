@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
+public class HomePage extends BasePage {
 	
 	@FindBy(xpath="//a[text()='Interaction']")
 	private WebElement lnkInteraction;
@@ -18,18 +18,23 @@ public class HomePage {
 	
 	public HomePage(WebDriver driver)
 	{
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void navigateToSelectablePage()
+	public SelectablePage navigateToSelectablePage()
 	{
-		bMouseOverAndClick(lnkInteraction,lnkSelectable);
+		 bMouseOverAndClick(lnkInteraction,lnkSelectable);
+		 SelectablePage objSelectablePage = new SelectablePage(DriverSetup.getDriver());
+		 return objSelectablePage;
 	}
 	
 	public void bMouseOverAndClick(WebElement ele1,WebElement ele2)
 	{
-		Actions objAction = new Actions(DriverSetup.getDriver());
-		Action mouseOverAndClick = objAction.moveToElement(ele1).moveToElement(ele2).click().build();
+		Actions objAction = new Actions(driver);
+		 objAction.moveToElement(ele1).build().perform();
+		 waitForElementVisible(ele2, DriverSetup.IMAXTIME);
+		 Action mouseOverAndClick = objAction.moveToElement(ele2).click().build();
 		mouseOverAndClick.perform();
 	}
 

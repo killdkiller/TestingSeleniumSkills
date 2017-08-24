@@ -6,6 +6,8 @@
       <class name="org.epam.tests.BaseTest">
         <methods>
           <include name="selectFromList"/>
+          <include name="initializeDriver"/>
+          <include name="closeDriver"/>
         </methods>
       </class> <!-- org.epam.tests.BaseTest -->
     </classes>
