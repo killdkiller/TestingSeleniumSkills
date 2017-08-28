@@ -3,8 +3,6 @@ package org.epam.pages;
 import org.epam.driver.DriverSetup;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -24,18 +22,10 @@ public class HomePage extends BasePage {
 	
 	public SelectablePage navigateToSelectablePage()
 	{
+		 waitForElementVisible(lnkInteraction, DriverSetup.IMAXTIME);
 		 bMouseOverAndClick(lnkInteraction,lnkSelectable);
-		 SelectablePage objSelectablePage = new SelectablePage(DriverSetup.getDriver());
+		 SelectablePage objSelectablePage = new SelectablePage(driver);
 		 return objSelectablePage;
-	}
-	
-	public void bMouseOverAndClick(WebElement ele1,WebElement ele2)
-	{
-		Actions objAction = new Actions(driver);
-		 objAction.moveToElement(ele1).build().perform();
-		 waitForElementVisible(ele2, DriverSetup.IMAXTIME);
-		 Action mouseOverAndClick = objAction.moveToElement(ele2).click().build();
-		mouseOverAndClick.perform();
 	}
 
 }
