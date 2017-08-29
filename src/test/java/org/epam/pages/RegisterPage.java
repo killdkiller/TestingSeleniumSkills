@@ -37,6 +37,7 @@ public class RegisterPage extends BasePage {
 	
 	public LoginPage clickSigIn()
 	{
+		waitForElementVisible(lnkSignIn, DriverSetup.IMAXTIME);
 		lnkSignIn.click();
 		LoginPage loginPage = new LoginPage(driver);
 		return loginPage;

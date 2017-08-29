@@ -16,12 +16,12 @@ public class SelectablePage extends BasePage {
 	private WebElement lnkDefaultFunctionality; 
 	
 	@FindBy(id = "selectable")
-	private WebElement lstDefaultFunctionality;
+	private WebElement lstSelectable;
 	
-	@FindBy(xpath = "//a[text()='//a[text()='Display as grid']']")
+	@FindBy(xpath = "//a[text()='Display as grid']")
 	private WebElement lnkDisplayGrid;
 	
-	@FindBy(id = "//a[text()='Serialize']")
+	@FindBy(xpath = "//a[text()='Serialize']")
 	private WebElement lnkSerialize;
 	
 	public SelectablePage(WebDriver driver)
@@ -39,38 +39,56 @@ public class SelectablePage extends BasePage {
 	{
 		waitForElementVisible(lnkDefaultFunctionality, DriverSetup.IMAXTIME);
 		lnkDefaultFunctionality.click();
-		int totFrames = driver.findElements(By.tagName("iFrame")).size();
-		for(int i=0;i<totFrames;i++)
-		{
-			driver.switchTo().frame(i);
-			if(lstDefaultFunctionality.isEnabled())
-			{
-				break;
-			}
-		}
+		fnNavigateToEnabledFrame();
 		driver.findElement(By.xpath(String.format(DYNLISTITEM, visibleText))).click();
 		driver.switchTo().defaultContent();
 	}
 	
-	public boolean isDefaultFunctionItemSelected(String visibleText)
+	public void selectDefaultGrid(String visibleText)
+	{
+		waitForElementVisible(lnkDisplayGrid, DriverSetup.IMAXTIME);
+		lnkDisplayGrid.click();
+		fnNavigateToEnabledFrame();
+		driver.findElement(By.xpath(String.format(DYNLISTITEM, visibleText))).click();
+		driver.switchTo().defaultContent();
+	}
+	
+	public void selectSerialize(String visibleText)
+	{
+		waitForElementVisible(lnkSerialize, DriverSetup.IMAXTIME);
+		lnkSerialize.click();
+		fnNavigateToEnabledFrame();
+		driver.findElement(By.xpath(String.format(DYNLISTITEM, visibleText))).click();
+		driver.switchTo().defaultContent();
+	}
+	
+	public boolean isItemSelected(String visibleText)
 	{
 		boolean blnResult = false;
-		waitForElementVisible(lnkDefaultFunctionality, DriverSetup.IMAXTIME);
-		lnkDefaultFunctionality.click();
-		int totFrames = driver.findElements(By.tagName("iFrame")).size();
-		for(int i=0;i<totFrames;i++)
-		{
-			driver.switchTo().frame(i);
-			if(lstDefaultFunctionality.isEnabled())
-			{
-				break;
-			}
-		}
+		fnNavigateToEnabledFrame();
 		if(SELECTEDCOLOR.equalsIgnoreCase(driver.findElement(By.xpath(String.format(DYNLISTITEM, visibleText))).getCssValue("background-color")))
 		{
 			blnResult = true;
 		}
+		driver.switchTo().defaultContent();
 		return blnResult;
 	}
+	
+	public void fnNavigateToEnabledFrame()
+	{
+		int totFrames = driver.findElements(By.tagName("iFrame")).size();
+		for(int i=0;i<totFrames;i++)
+		{
+			driver.switchTo().frame(i);
+			if(lstSelectable.isEnabled())
+			{
+				System.out.println("Present at Index :"+i);
+				//break;
+			}
+			driver.switchTo().defaultContent();
+		}
+	}
+	
+	
 
 }
