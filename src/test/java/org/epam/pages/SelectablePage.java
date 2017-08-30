@@ -4,6 +4,7 @@ import org.epam.driver.DriverSetup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -76,16 +77,26 @@ public class SelectablePage extends BasePage {
 	
 	public void fnNavigateToEnabledFrame()
 	{
+		boolean blnStatus = false;
 		int totFrames = driver.findElements(By.tagName("iFrame")).size();
 		for(int i=0;i<totFrames;i++)
 		{
 			driver.switchTo().frame(i);
-			if(lstSelectable.isEnabled())
-			{
-				System.out.println("Present at Index :"+i);
-				//break;
+			
+			try{
+				
+				Actions action = new Actions(driver);
+				action.moveToElement(lstSelectable).build().perform();
+				blnStatus = true;
+				
 			}
-			driver.switchTo().defaultContent();
+			catch(Exception e)
+			{
+				driver.switchTo().defaultContent();
+			}
+			if(blnStatus)
+				break;
+			
 		}
 	}
 	
